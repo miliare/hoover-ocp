@@ -1,25 +1,28 @@
 package fr.xebia.xke.solid.ocp;
 
-public enum Orientation {
-    NORTH(90, 0, 1),
-    EAST(0, 1, 0),
-    SOUTH(270, 0, -1),
-    WEST(180, -1, 0);
+import static java.lang.Math.abs;
 
-    public static final int DEFAULT_ANGLE = 90;
+public enum Orientation {
+    EAST(0, 1, 0),
+    NORTH(90, 0, 1),
+    WEST(180, -1, 0),
+    SOUTH(270, 0, -1),
+    ;
+
+    public static final int OFFSET_ANGLE = 90;
 
     private final int angle;
-    public final int plusX;
-    public final int plusY;
+    public final int offsetX;
+    public final int offsetY;
 
-    private Orientation(int angle, int plusX, int plusY) {
+    Orientation(int angle, int offsetX, int offsetY) {
         this.angle = angle;
-        this.plusX = plusX;
-        this.plusY = plusY;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
     }
 
     public Orientation turn(int angle) {
-        int newAngle = (this.angle + angle) % 360;
+        int newAngle = abs(this.angle + angle) % 360;
         return Orientation.fromAngle(newAngle);
     }
 
