@@ -6,8 +6,7 @@ public enum Orientation {
     EAST(0, 1, 0),
     NORTH(90, 0, 1),
     WEST(180, -1, 0),
-    SOUTH(270, 0, -1),
-    ;
+    SOUTH(270, 0, -1);
 
     public static final int OFFSET_ANGLE = 90;
 

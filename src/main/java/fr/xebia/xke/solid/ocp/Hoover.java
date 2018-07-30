@@ -1,25 +1,20 @@
 package fr.xebia.xke.solid.ocp;
 
-import static java.lang.String.valueOf;
-import static java.util.stream.Collectors.toList;
-import java.util.List;
+import static fr.xebia.xke.solid.ocp.Command.of;
 
 public class Hoover {
 
-    private final List<Command> program;
+    private final String cleanProgram;
     private Position currentPosition = new Position();
 
-    public Hoover(String program) {
-        this.program = program.
-                        chars().
-                        mapToObj(cmd -> valueOf((char) cmd)).
-                        map(Command::valueOf).
-                        collect(toList());
+    public Hoover(String cleanProgram) {
+        this.cleanProgram = cleanProgram;
     }
 
     public void clean() {
-        program.stream().
-                forEach(cmd -> currentPosition = cmd.apply(currentPosition));
+        cleanProgram.chars()
+                .mapToObj(stringCmd -> (char) stringCmd)
+                .forEach(cmd -> currentPosition = of(cmd).compute(currentPosition));
     }
 
     public Position getPosition() {
