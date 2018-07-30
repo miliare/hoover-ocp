@@ -1,5 +1,7 @@
 # SOLID : Open Closed Principle
 
+Forked from xke-solid https://github.com/xebia-france/xke-solid
+
 # Why?
 ```java
 public void clean() {
