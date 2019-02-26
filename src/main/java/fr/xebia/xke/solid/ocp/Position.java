@@ -4,13 +4,15 @@ public class Position {
 
     final int x;
     final int y;
+    public Orientation orientation;
 
     public Position() {
-        this(0, 0);
+        this(0, 0, Orientation.NORTH);
     }
 
-    public Position(int x, int y) {
+    public Position(int x, int y, Orientation orientation) {
         this.x = x;
         this.y = y;
+        this.orientation = orientation;
     }
 }

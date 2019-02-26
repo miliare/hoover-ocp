@@ -1,14 +1,15 @@
 package fr.xebia.xke.solid.ocp;
 
-import static junit.framework.Assert.assertEquals;
 import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
 
 public class HooverTest {
 
-    @Test public void
+    @Test
+    public void
     should_mow() {
         Hoover hoover = new Hoover("ADAAAGADA");
-
         hoover.clean();
 
         assertEquals(4, hoover.getPosition().x);
