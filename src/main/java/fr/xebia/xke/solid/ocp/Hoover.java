@@ -1,8 +1,17 @@
 package fr.xebia.xke.solid.ocp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Hoover {
 
     private final String program;
+    private Map<Character, Strategy> stategies = new HashMap<Character, Strategy>() {{
+        put('A', new Forward());
+        put('D', new Right());
+        put('G', new Left());
+    }};
+
     private Position currentPosition = new Position();
 
     public Hoover(String program) {
@@ -11,19 +20,7 @@ public class Hoover {
 
     public void clean() {
         for (int i = 0; i < program.length(); i++) {
-            switch (program.charAt(i)) {
-                case ('A'):
-                    currentPosition = new Position(currentPosition.x + currentPosition.orientation.x, currentPosition.y + currentPosition.orientation.y, currentPosition.orientation);
-                    break;
-                case ('D'):
-                    currentPosition = new Position(currentPosition.x, currentPosition.y, currentPosition.orientation.turn(90));
-                    break;
-                case ('G'):
-                    currentPosition = new Position(currentPosition.x, currentPosition.y, currentPosition.orientation.turn(-90));
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid command: " + program.charAt(i));
-            }
+            currentPosition = stategies.get(program.charAt(i)).update(currentPosition);
         }
     }
 
